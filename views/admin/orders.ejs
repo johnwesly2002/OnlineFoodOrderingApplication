@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Ansonika">
+  <title>FOOYES - Admin dashboard</title>
+	
+  <!-- Favicons-->
+  <link rel="shortcut icon" href="/img/favicon.ico" type="../admin_section/image/x-icon">
+  <link rel="apple-touch-icon" type="/image/x-icon" href="../admin_section/img/apple-touch-icon-57x57-precomposed.png">
+  <link rel="apple-touch-icon" type="/image/x-icon" sizes="72x72" href="..admin_section/img/apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon" type="/image/x-icon" sizes="114x114" href="..admin_section/img/apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon" type="/image/x-icon" sizes="144x144" href="..admin_section/img/apple-touch-icon-144x144-precomposed.png">
+	
+  <!-- Bootstrap core CSS-->
+  <link href="/admin_section/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Main styles -->
+  <link href="/admin_section/css/admin.css" rel="stylesheet">
+  <!-- Icon fonts-->
+  <link href="/admin_section/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Plugin styles -->
+  <link href="/admin_section/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <!-- Your custom styles -->
+  <link href="/css/custom.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="/javascripts/angularjs.js"></script>
+	
+</head>
+
+<body class="fixed-nav sticky-footer" id="page-top" ng-app="Myapp" ng-controller="myCtrl" ng-init="ordget()">
+ <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
+        
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                
+                
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Orders Page">
+                    <a class="nav-link" href="/admin/orders">
+                        <i class="fa fa-fw fa-shopping-basket"></i>
+                        <span class="nav-link-text">Orders Page</span>
+                    </a>
+                </li>
+                
+                
+            </ul>
+            <ul class="navbar-nav sidenav-toggler">
+                <li class="nav-item">
+                    <a class="nav-link text-center" id="sidenavToggler">
+                        <i class="fa fa-fw fa-angle-left"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item dropdown">
+                    
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- /Navigation-->
+  
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Orders</li>
+      </ol>
+		<!-- Example DataTables Card-->
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Orders Table </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                   <!--  <td>S.No</td> -->
+                    <td>User Name</td>
+                    <td>Item Name</td>
+                    <td>Item Cost</td>
+                </tr>
+              </thead>
+              <tbody ng-init="getcartdetails()">
+            <tr ng-repeat="x1 in dataorder">
+
+               
+              <!--   <td>
+                    <span>{{x1._id.index}}</span>
+                </td> -->
+                <td>
+                    <span>{{x1._id.username}}</span>
+                </td>
+                <td>
+                    <span>{{x1._id.item_name}}</span>
+                </td>
+                <td>
+                    <span>{{x1.count}}</span>
+                </td>
+
+            </tr>
+        </tbody>
+            </table>
+          </div>
+        </div>
+       
+      </div>
+	  <!-- /tables-->
+	  </div>
+	  <!-- /container-fluid-->
+   	</div>
+    <!-- /container-wrapper-->
+    <footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>Copyright © Eat24 2022</small>
+        </div>
+      </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="/adminlogout">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Bootstrap core JavaScript-->
+    <script src="..admin_section/vendor/jquery/jquery.min.js"></script>
+    <script src="..admin_section/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="..admin_section/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="..admin_section/vendor/chart.js/Chart.min.js"></script>
+    <script src="..admin_section/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="..admin_section/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="..admin_section/vendor/jquery.magnific-popup.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/admin.js"></script>
+    <!-- Custom scripts for this page-->
+    <script src="js/admin-datatables.js"></script>
+	
+</body>
+</html>
